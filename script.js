@@ -5,45 +5,51 @@ let equal = document.querySelector('#equal');
 let number = document.querySelectorAll('#numbers');
 let buttons = document.querySelectorAll('.calc-button');
 
-let previousNumber = '';
-let currentNumber = '';
+let num1 = '';
+let num2 = '';
 let result = '';
 let operator = '';
 
 function calculate() {
-  console.log((previousNumber = Number(previousNumber)));
-  console.log((currentNumber = Number(currentNumber)));
+  console.log({ num1, num2, operator });
+  num1 = Number(num1);
+  num2 = Number(num2);
 
   if (operator === '+') {
-    result = Number(previousNumber) + Number(currentNumber);
+    result = Number(num1) + Number(num2);
   } else if (operator === '-') {
-    result = Number(previousNumber) - Number(currentNumber);
+    result = Number(num1) - Number(num2);
   } else if (operator === '*') {
-    result = Number(previousNumber) * Number(currentNumber);
+    result = Number(num1) * Number(num2);
   } else if (operator === '÷') {
-    result = Number(previousNumber) / Number(currentNumber);
+    result = Number(num1) / Number(num2);
   }
 
-  screen.textContent = result;
+  console.log(result);
 }
 
 function clearScreen() {
-  currentNumber = '';
-  previousNumber = '';
+  num1 = '';
+  num2 = '';
   operator = '';
   screen.textContent = '0';
 }
 
 buttons.forEach((btn) => {
   btn.addEventListener('click', (e) => {
-    if (
-      (btn.textContent >= 0 && btn.textContent <= 9) ||
-      btn.textContent === '+' ||
-      btn.textContent === '-' ||
-      btn.textContent === '÷' ||
-      btn.textContent === '*'
-    ) {
-      handleNumber(e.target.textContent);
+    if (btn.textContent >= 0 && btn.textContent <= 9) {
+      console.log(handleNumberOne(e.target.textContent));
+
+      console.log(handleNumberTwo(e.target.textContent));
+
+      if (
+        btn.textContent === '+' ||
+        btn.textContent === '-' ||
+        btn.textContent === '÷' ||
+        btn.textContent === '*'
+      ) {
+        console.log((operator = btn.textContent));
+      }
     }
   });
 });
@@ -54,12 +60,23 @@ operators.forEach((btn) => {
   });
 });
 
-function handleNumber(number) {
-  if (currentNumber.length <= 100) {
-    previousNumber += number;
-    screen.textContent = previousNumber;
+function handleNumberOne(number) {
+  console.log(`handleNumber was called, input was ${num1} and ${number}`);
+  if (num1.length <= 100) {
+    num1 += Number(number);
+    screen.textContent = num1;
   }
+  console.log(`output for handleOne was ${num1}`);
 }
 
-clear.addEventListener('click', clearScreen);
+function handleNumberTwo(number) {
+  console.log(`handleNumberTwo was called, input was ${num2} and ${number}`);
+  if (num2.length <= 100) {
+    num2 += Number(number);
+    screen.textContent = num2;
+  }
+  console.log(`output for handleTwo was ${num2}`);
+}
+
 equal.addEventListener('click', calculate);
+clear.addEventListener('click', clearScreen);
