@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="wrapper">
@@ -16,32 +15,33 @@
         <div class="calc-button-row">
           <button class="calc-button double">C</button>
           <button class="calc-button">&larr;</button>
-          <button class="calc-button">&divide;</button>
+          <button id="operator" class="calc-button">÷</button>
         </div>
         <div class="calc-button-row">
-          <button class="calc-button">7</button>
-          <button class="calc-button">8</button>
-          <button class="calc-button">9</button>
-          <button class="calc-button">&times;</button>
+          <button id="numbers" class="calc-button">7</button>
+          <button id="numbers" class="calc-button">8</button>
+          <button id="numbers" class="calc-button">9</button>
+          <button id="operator" class="calc-button">*</button>
         </div>
         <div class="calc-button-row">
-          <button class="calc-button">4</button>
-          <button class="calc-button">5</button>
-          <button class="calc-button">6</button>
-          <button class="calc-button">&minus;</button>
+          <button id="numbers" class="calc-button">4</button>
+          <button id="numbers" class="calc-button">5</button>
+          <button id="numbers" class="calc-button">6</button>
+          <button id="operator" class="calc-button">-</button>
         </div>
         <div class="calc-button-row">
-          <button class="calc-button">1</button>
-          <button class="calc-button">2</button>
-          <button class="calc-button">3</button>
-          <button class="calc-button">&plus;</button>
+          <button id="numbers" class="calc-button">1</button>
+          <button id="numbers" class="calc-button">2</button>
+          <button id="numbers" class="calc-button">3</button>
+          <button id="operator" class="calc-button">+</button>
         </div>
 
         <div class="calc-button-row">
           <button class="calc-button triple">0</button>
-          <button class="calc-button">&equals;</button>
+          <button class="calc-button">=</button>
         </div>
       </section>
     </div>
+    <script src="script.js"></script>
   </body>
 </html>
