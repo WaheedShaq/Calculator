@@ -1,5 +1,6 @@
 let screen = document.querySelector('.screen');
 let clear = document.getElementById('clear');
+let del = document.getElementById('delete');
 let operators = document.querySelectorAll('#operator');
 let equal = document.querySelector('#equal');
 let number = document.querySelectorAll('#numbers');
@@ -10,6 +11,7 @@ let num2 = '';
 let result = '';
 let operator = '';
 
+// Main calculation function
 function calculate() {
   num1 = Number(num1);
   num2 = Number(num2);
@@ -64,8 +66,9 @@ buttons.forEach((btn) => {
 // Select operator
 operators.forEach((btn) => {
   btn.addEventListener('click', (e) => {
-    operator = e.target.textContent;
-    screen.textContent = operator;
+    handleOperator(e.target.textContent);
+    // operator = e.target.textContent;
+    // screen.textContent += operator;
   });
 });
 
@@ -73,9 +76,10 @@ function handleNumberOne(number) {
   console.log(`handleNumberOne was called, input was ${num1} and ${number}`);
   if (num1.length <= 100) {
     num1 += Number(number);
+
+    console.log(`output for handleNumberOne was ${num1}`);
     return (screen.textContent = num1);
   }
-  console.log(`output for handleNumberOne was ${num1}`);
 
   // return num1;
 }
@@ -84,17 +88,33 @@ function handleNumberTwo(number) {
   console.log(`handleNumberTwo was called, input was ${num2} and ${number}`);
   if (num2.length <= 100) {
     num2 += Number(number);
+
+    console.log(`output for handleNumberTwo was ${num2}`);
     return (screen.textContent = num2);
   }
-  console.log(`output for handleNumberTwo was ${num2}`);
-  // return num2;
 }
 
-// function handleOperator(op) {
-//   operator = op;
-//   screen.textContent = num1 + ' ' + operator;
-//   num1 = '';
-// }
+function handleOperator(op) {
+  operator = op;
+  num1 = num2;
+  screen.textContent += num1 + ' ' + operator;
+  num2 = '';
+}
+
+function handleDelete() {
+  if (num2 !== '') {
+    num2 = num2.slice(0, -1);
+    screen.textContent = num2;
+    if (num2 === '') {
+      screen.textContent = '0';
+    }
+  }
+  if (num2 === '' && num1 !== '' && operator === '') {
+    num1 = num1.slice(0, -1);
+    screen.textContent = num1;
+  }
+}
 
 equal.addEventListener('click', calculate);
 clear.addEventListener('click', clearScreen);
+del.addEventListener('click', handleDelete);
